@@ -5,11 +5,23 @@ public class Merge {
     if(lo < hi) {
       mergesort(data, lo, (hi-lo)/2);
       mergesort(data, (hi-lo)/2, hi);
-
+      //merge;
     }
   }
 
-  public static void merge(int[] data, int[] temp, int lo, int hi) {
+  public static void merge(int[] data, int[] temp, int lo, int hi, int mid) {
+    int idx = lo;
+    int idx2 = mid;
+    while(idx<=mid) {
+      if(temp[idx] > temp[idx2]) {
+        data[idx] = temp[idx2];
+        idx2++;
+      }
+      else{
+        data[idx] = temp[idx];
+        idx++;
+      }
+    }
 
   }
 
@@ -18,5 +30,7 @@ public class Merge {
       temp[x] = data[x];
     }
   }
+
+  //private static void swap(int[] data, )
 
 }
