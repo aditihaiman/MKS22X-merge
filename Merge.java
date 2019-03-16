@@ -1,28 +1,45 @@
+import java.util.*;
+import java.io.*;
+
 public class Merge {
 
 
   public static void mergesort(int[] data, int lo, int hi) {
-    if(lo < hi) {
-      mergesort(data, lo, (hi-lo)/2);
-      mergesort(data, (hi-lo)/2, hi);
+    if(data.length>1) {
+      int mid = (hi+lo)/2;
+      mergesort(data, lo, mid);
+      mergesort(data, mid+1, hi);
       //merge;
     }
   }
 
-  public static void merge(int[] data, int[] temp, int lo, int hi, int mid) {
-    int idx = lo;
-    int idx2 = mid;
-    while(idx<=mid) {
-      if(temp[idx] > temp[idx2]) {
-        data[idx] = temp[idx2];
-        idx2++;
-      }
-      else{
-        data[idx] = temp[idx];
+  public static void merge(int[] data, int lo, int mid, int hi) {
+    //int[] output = new int[data.length+temp.length];
+    int[] temp = new int[data.length];
+    copy(data, temp);
+    int idx = mid+1;
+    int idx2 = lo;
+    while(lo<=mid && idx<=hi) {
+      System.out.println("A");
+      if(temp[idx] <= temp[lo]) {
+        data[idx2] = temp[idx];
         idx++;
       }
+      else{
+        data[idx2] = temp[lo];
+        lo++;
+      }
+      idx2++;
     }
-
+    while(lo<=mid) { //takes care of leftover values
+      data[idx2] = temp[lo];
+      lo++;
+    }
+    while(idx<=hi){
+      data[idx2] = temp[idx];
+      idx++;
+    }
+    //return output;
   }
 
   private static void copy(int[] data, int[] temp){
