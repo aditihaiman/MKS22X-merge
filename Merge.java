@@ -18,13 +18,11 @@ public class Merge {
   }
 
   public static void merge(int[] data, int lo, int mid, int hi) {
-    //int[] output = new int[data.length+temp.length];
     int[] temp = new int[data.length];
     copy(data, temp);
     int idx = mid+1;
     int idx2 = lo;
     while(lo<=mid && idx<=hi) {
-      //System.out.println("A");
       if(temp[idx] <= temp[lo]) {
         data[idx2] = temp[idx];
         idx++;
@@ -34,7 +32,6 @@ public class Merge {
         lo++;
       }
       idx2++;
-      System.out.println(Arrays.toString(data));
     }
     while(lo<=mid) { //takes care of leftover values
       data[idx2] = temp[lo];
@@ -46,7 +43,6 @@ public class Merge {
       idx2++;
       idx++;
     }
-    //return output;
   }
 
   private static void copy(int[] data, int[] temp){
@@ -54,7 +50,5 @@ public class Merge {
       temp[x] = data[x];
     }
   }
-
-  //private static void swap(int[] data, )
 
 }
