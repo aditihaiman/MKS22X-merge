@@ -4,12 +4,16 @@ import java.io.*;
 public class Merge {
 
 
+  public static void mergesort(int[] data) {
+    mergesort(data, 0, data.length-1);
+  }
+
   public static void mergesort(int[] data, int lo, int hi) {
-    if(data.length>1) {
+    if(lo<hi) {
       int mid = (hi+lo)/2;
       mergesort(data, lo, mid);
       mergesort(data, mid+1, hi);
-      //merge;
+      merge(data, lo, mid, hi);
     }
   }
 
@@ -20,7 +24,7 @@ public class Merge {
     int idx = mid+1;
     int idx2 = lo;
     while(lo<=mid && idx<=hi) {
-      System.out.println("A");
+      //System.out.println("A");
       if(temp[idx] <= temp[lo]) {
         data[idx2] = temp[idx];
         idx++;
@@ -30,13 +34,16 @@ public class Merge {
         lo++;
       }
       idx2++;
+      System.out.println(Arrays.toString(data));
     }
     while(lo<=mid) { //takes care of leftover values
       data[idx2] = temp[lo];
+      idx2++;
       lo++;
     }
     while(idx<=hi){
       data[idx2] = temp[idx];
+      idx2++;
       idx++;
     }
     //return output;
