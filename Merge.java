@@ -5,21 +5,21 @@ public class Merge {
 
 
   public static void mergesort(int[] data) {
-    mergesort(data, 0, data.length-1);
+    int[] temp = new int[data.length];
+    mergesort(data, temp, 0, data.length-1);
   }
 
-  public static void mergesort(int[] data, int lo, int hi) {
+  public static void mergesort(int[] data, int[] temp, int lo, int hi) {
     if(lo<hi) {
       int mid = (hi+lo)/2;
-      mergesort(data, lo, mid);
-      mergesort(data, mid+1, hi);
-      merge(data, lo, mid, hi);
+      mergesort(data, temp, lo, mid);
+      mergesort(data, temp, mid+1, hi);
+      merge(data, temp, lo, mid, hi);
     }
   }
 
-  public static void merge(int[] data, int lo, int mid, int hi) {
-    int[] temp = new int[data.length];
-    copy(data, temp);
+  public static void merge(int[] data, int[] temp, int lo, int mid, int hi) {
+    copy(data, temp, lo, hi);
     int idx = mid+1;
     int idx2 = lo;
     while(lo<=mid && idx<=hi) {
@@ -45,8 +45,8 @@ public class Merge {
     }
   }
 
-  private static void copy(int[] data, int[] temp){
-    for(int x = 0; x < data.length; x++) {
+  private static void copy(int[] data, int[] temp, int lo, int hi){
+    for(int x = lo; x < hi+1; x++) {
       temp[x] = data[x];
     }
   }
