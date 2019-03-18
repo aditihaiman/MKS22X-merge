@@ -9,7 +9,7 @@ public class Merge {
     mergesort(data, temp, 0, data.length-1);
   }
 
-  public static void mergesort(int[] data, int[] temp, int lo, int hi) {
+  private static void mergesort(int[] data, int[] temp, int lo, int hi) {
     if(lo<hi) {
       int mid = (hi+lo)/2;
       mergesort(data, temp, lo, mid);
@@ -18,12 +18,12 @@ public class Merge {
     }
   }
 
-  public static void merge(int[] data, int[] temp, int lo, int mid, int hi) {
+  private static void merge(int[] data, int[] temp, int lo, int mid, int hi) {
     copy(data, temp, lo, hi);
     int idx = mid+1;
     int idx2 = lo;
-    while(lo<=mid && idx<=hi) {
-      if(temp[idx] <= temp[lo]) {
+    while(lo<=mid && idx<=hi) { //while indices are within the partitioned sections
+      if(temp[idx] <= temp[lo]) { //compares values and adds smaller one to original array
         data[idx2] = temp[idx];
         idx++;
       }
@@ -33,7 +33,7 @@ public class Merge {
       }
       idx2++;
     }
-    while(lo<=mid) { //takes care of leftover values
+    while(lo<=mid) { //takes care of leftover values when one partitioned section is longer than another
       data[idx2] = temp[lo];
       idx2++;
       lo++;
