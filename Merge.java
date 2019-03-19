@@ -51,4 +51,21 @@ public class Merge {
     }
   }
 
+  public static void insertionsort(int[] data, int lo, int hi){
+    if (data.length > 0) {
+      for (int x = lo+1; x <= hi; x++) {
+        int temp = data[x];
+        int y = x-1;
+        int sub = 0;
+        while (y >= 0 && temp < data[y]) {
+          data[x-sub] = data[y];
+          y--;
+          sub++;
+        }
+        data[y+1] = temp;
+      }
+    }
+
+  }
+
 }
