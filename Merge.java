@@ -10,7 +10,13 @@ public class Merge {
   }
 
   private static void mergesort(int[] data, int[] temp, int lo, int hi) {
-    if(lo<hi) {
+    if(lo>=hi) {
+      return;
+    }
+    // else if(hi-lo<20) {
+    //   insertionsort(data, lo, hi);
+    // }
+    else{
       int mid = (hi+lo)/2;
       mergesort(data, temp, lo, mid);
       mergesort(data, temp, mid+1, hi);
@@ -65,7 +71,6 @@ public class Merge {
         data[y+1] = temp;
       }
     }
-
   }
 
 }
